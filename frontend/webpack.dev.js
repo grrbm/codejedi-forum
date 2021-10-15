@@ -1,53 +1,56 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: {  index: './src/app/index.js'
-  },
+  entry: { index: "./src/app/index.js" },
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, "public"),
+    filename: "bundle.js",
+  },
+  node: {
+    fs: "empty",
   },
   module: {
-    rules: [{
-      loader: 'babel-loader',
-      test: /\.js$/,
-      exclude: /node_modules/
-    }, 
-    {
-      test: /\.scss|css$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader'
-      ]
-    },
-    {
+    rules: [
+      {
+        loader: "babel-loader",
+        test: /\.js$/,
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.scss|css$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]',
-              publicPath: '/'
-            }   
-          }
-        ]
+              name: "[path][name].[ext]",
+              publicPath: "/",
+            },
+          },
+        ],
       },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
-        ]
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff",
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader",
+      },
+    ],
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: "cheap-module-eval-source-map",
   devServer: {
-    contentBase: path.join(__dirname, 'src'),
+    contentBase: path.join(__dirname, "src"),
     hot: true,
-    historyApiFallback: true,            
+    historyApiFallback: true,
     port: 4200,
     stats: "errors-only",
-    open: false
+    open: false,
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 };
