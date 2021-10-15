@@ -4,9 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon server.js",
+    "test": "env-cmd -f ./config/test.env jest",
+    "test:user": "env-cmd -f ./config/test.env jest --watch ./tests/user.test.js",
+    "test:rating": "env-cmd -f ./config/test.env jest rating",
+    "test:question": "env-cmd -f ./config/test.env jest question",
+    "test:qtrack": "env-cmd -f ./config/test.env jest qtrack",
+    "test:auth": "env-cmd -f ./config/test.env jest --watch ./tests/auth.test.js",
+    "test:comment": "env-cmd -f ./config/test.env jest --watch ./tests/comment.test.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.0.11",
+    "nodemon": "^2.0.13"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
+  }
 }
