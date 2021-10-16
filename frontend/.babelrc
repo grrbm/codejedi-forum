@@ -5,7 +5,7 @@
         ["transform-class-properties", { "spec": true }],
         ["transform-runtime", {
           "regenerator": true
-        }],
+        }], //this plugin makes generator function* work (redux-saga)
         "babel-plugin-transform-object-rest-spread"
       ]
 }
